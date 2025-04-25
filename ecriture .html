@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Écriture Manuscrite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fffbe6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    .papier {
+      background-color: #fff48c;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+      font-size: 22px;
+      line-height: 1.8;
+      width: 500px;
+      max-width: 90%;
+      white-space: pre-wrap;
+    }
+
+    .curseur {
+      border-right: 2px solid #000;
+      animation: blink 0.8s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="papier"><span id="ecriture" class="curseur"></span></div>
+
+  <script>
+  const texte = `Ho an'i Sit... ❤️\n\nEny, tsy tafahaona intsony isika noho ny elanelan-tany, nefa hoy aho aminao androany hoe:\nMBOLA TIA ANAO AHO HATRAMIN'IZAO 😊.\n\nManantena fa mbola hihaona isika any aoriana any.`;
+    const ecran = document.getElementById("ecriture");
+
+    let i = 0;
+    function type() {
+      if (i < texte.length) {
+        ecran.textContent += texte.charAt(i);
+        i++;
+        const vitesse = Math.random() * (90 - 30) + 30; // vitesse d’écriture humaine
+        setTimeout(type, vitesse);
+      }
+    }
+
+    window.onload = type;
+  </script>
+
+</body>
+</html>
