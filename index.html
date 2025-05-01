@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,6 +16,17 @@
       font-family: 'Patrick Hand', cursive;
     }
 
+    .heart {
+      font-size: 80px;
+      animation: beat 1s infinite ease-in-out;
+      color: #e91e63;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
     .papier {
       background-color: #fff48c;
       padding: 30px;
@@ -25,6 +37,7 @@
       width: 500px;
       max-width: 90%;
       white-space: pre-wrap;
+      display: none;
     }
 
     .curseur {
@@ -38,25 +51,36 @@
   </style>
 </head>
 <body>
+	<div class="heart" id="heart">❤️</div>
 
-  <div class="papier"><span id="ecriture" class="curseur"></span></div>
+  <div class="papier" id="paper"><span id="ecriture" class="curseur"></span></div>
 
   <script>
-  const texte = `Ho an'i Vony ❤️\n\Tiako ho tsapana ry Vony fa zah tena tianao.Eny tenena tiako , na dia miady foan ary isika indray , de miravon izan rehef velon indray ilay afo pitiavana ao amintsik :\😊.\n\Mantena less zah ry babeko fa indray andro any isika elah ho eny ambony ôtely ary samy hiteny ilay eny , na inon na inon miseho de hitia anao foan aho na ratsy na hakaratsina , ka ho hita olon eo amizay ntsik mifanorika 😂.\n\Vony ooo tiko ndry de bisous be any aa . de ts mial vanin ntson fa manjary las tzt zah`;
-    const ecran = document.getElementById("ecriture");
+    const texte = `Ho an'i Vony ❤️\n\nEty ampiandohana less zah dia mifona. Reraka less zah matoa tsy de tafiresaka amin-lah, efa miha mitaky ny fiaretako nataoko hatrizay. Eny, tsy aiko na café izany aza de agambany lasa tsy madaitra intsony 😊.\n\nTsy aiko agambany less, mivavaka ho antsika less mba omeny hery aho hahafahako miresaka aminao alina, tena lasa tsy vitako intsony satria na cahier aza lasa tsy voaraiko intsony rehefa tonga ato an-trano aho 😭.\n\nVony ô, aza omeo tsiny less aho indray fa tsy fananiko izany. Fa izaho koa lasa bedin-dreny eee 🥺, hoe maninona izao ianao otran'izao. Lasa mampijaly tena hono aho. Tokony hatory aho fa raha marary aho dia aiza no hahazoana vola indray. Eny less, hiezaka aho, hiresaka aminao... any aaaa!!\n\nRehefa mba mihavana indray isika, aoka mba tsy hiady intsony satria efa tsy de miresaka amin'ny Facebook intsony isika konna aa ❤️`;
 
+    const heart = document.getElementById('heart');
+    const paper = document.getElementById('paper');
+    const ecran = document.getElementById('ecriture');
     let i = 0;
+
     function type() {
       if (i < texte.length) {
         ecran.textContent += texte.charAt(i);
         i++;
-        const vitesse = Math.random() * (90 - 30) + 30; // vitesse d’écriture humaine
+        const vitesse = Math.random() * (90 - 30) + 30;
         setTimeout(type, vitesse);
       }
     }
 
-    window.onload = type;
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(() => {
+        heart.style.display = 'none';
+        paper.style.display = 'block';
+        type();
+      }, 3000); // ❤️ reste pendant 10 secondes
+    });
   </script>
 
 </body>
 </html>
+
